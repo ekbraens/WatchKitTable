@@ -22,6 +22,7 @@
                                     <connections>
                                         <outlet property="rowIcon" destination="FeB-ho-51A" id="ZyA-Ze-anQ"/>
                                         <outlet property="rowLabel" destination="DSy-kU-q9u" id="ADu-qr-zge"/>
+                                        <segue destination="e9w-Tx-Blu" kind="push" id="zam-1u-SbB"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -32,6 +33,22 @@
                     </connections>
                 </controller>
             </objects>
+        </scene>
+        <!--Detail Creature Controller-->
+        <scene sceneID="MLK-bO-LNg">
+            <objects>
+                <controller id="e9w-Tx-Blu" customClass="DetailCreatureController">
+                    <items>
+                        <label alignment="center" text="Label" id="kgr-ck-flC"/>
+                        <imageView height="0.80000000000000004" alignment="center" verticalAlignment="bottom" id="VnD-Q9-v3V"/>
+                    </items>
+                    <connections>
+                        <outlet property="detailImage" destination="VnD-Q9-v3V" id="vFb-8w-FhH"/>
+                        <outlet property="detailLabel" destination="kgr-ck-flC" id="059-HF-Bds"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="351" y="137"/>
         </scene>
     </scenes>
 </document>

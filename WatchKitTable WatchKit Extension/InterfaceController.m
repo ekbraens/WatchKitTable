@@ -8,7 +8,7 @@
 
 #import "InterfaceController.h"
 #import "CreaturesTableRowController.h"
-
+#import "DetailCreatureController.h"
 
 @interface InterfaceController()
 
@@ -16,6 +16,7 @@
 //unnessasray? 
 //@property (nonatomic, strong) NSArray * creatureList;
 @property (nonatomic, strong) CreaturesTableRowController * theRow;
+@property (nonatomic, strong) NSArray *creatureList;
 
 @end
 
@@ -28,9 +29,9 @@
         // Initialize variables here.
         // Configure interface objects here.
         // Okay
-        NSArray * creatureList = [[NSArray alloc] initWithObjects:@"Bob", @"Dave", @"Jerry", @"Jorge", @"Kevin", @"Mark", @"Phil", @"Stuart", @"Tim", nil];
+        self.creatureList = [[NSArray alloc] initWithObjects:@"Bob", @"Dave", @"Jerry", @"Jorge", @"Kevin", @"Mark", @"Phil", @"Stuart", @"Tim", nil];
         
-        [self configureTableWithData:creatureList];
+        [self configureTableWithData:_creatureList];
         
         NSLog(@"%@ initWithContext", self);
         
@@ -52,6 +53,12 @@
         [theRow.rowLabel setText:dataObjects[i]];
         [theRow.rowIcon setImage:[UIImage imageNamed:dataObjects[i]]];
     }
+}
+
+- (instancetype) contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex
+{
+    
+    return [self.creatureList objectAtIndex:rowIndex];
 }
 
 - (void)willActivate {
