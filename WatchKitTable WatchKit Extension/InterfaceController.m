@@ -12,10 +12,14 @@
 
 @interface InterfaceController()
 
+// table connected from sotryboard, dont forget
 @property (nonatomic, weak) IBOutlet WKInterfaceTable * table;
-//unnessasray? 
-//@property (nonatomic, strong) NSArray * creatureList;
+
+// custom row controller class
 @property (nonatomic, strong) CreaturesTableRowController * theRow;
+
+//  think it is nessasary to have this array as a private variable to use
+// in multiple functions within this class
 @property (nonatomic, strong) NSArray *creatureList;
 
 @end
@@ -28,33 +32,40 @@
     if (self){
         // Initialize variables here.
         // Configure interface objects here.
-        // Okay
+        NSLog(@"%@ initWithContext", self);
+        
+        // initilze the array once, use it multiple times in configureTable
+        // wouldnt want to initialize it there each time
         self.creatureList = [[NSArray alloc] initWithObjects:@"Bob", @"Dave", @"Jerry", @"Jorge", @"Kevin", @"Mark", @"Phil", @"Stuart", @"Tim", nil];
         
+        // pass in the array to populate the table
         [self configureTableWithData:_creatureList];
-        
-        NSLog(@"%@ initWithContext", self);
         
     }
     return self;
 }
 
+// from watchkit programming guide, modified slightly
 - (void)configureTableWithData:(NSArray*)dataObjects
 {
+    // row type specified in storyboard, dont forget
     [self.table setNumberOfRows:[dataObjects count] withRowType:@"CreaturesTableRowController"];
-    //NSInteger numofRows = self.table.numberOfRows;
+    
     for (NSInteger i = 0; i < self.table.numberOfRows; i++)
     {
+        // custom class, imported and used as row controller
         CreaturesTableRowController * theRow = [self.table rowControllerAtIndex:i];
-        
-        // unnessasary?
-        //[dataObjects objectAtIndex:i];
         
         [theRow.rowLabel setText:dataObjects[i]];
         [theRow.rowIcon setImage:[UIImage imageNamed:dataObjects[i]]];
     }
 }
 
+// this is the function that is used when a row is pressed for watchkit when done through storyboard
+// set up segueIdentifier in sotryboard
+// table should already be set up in this class
+// rowIndex is the row pressed at time of event
+// set up an interface controller to land on
 - (instancetype) contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex
 {
     

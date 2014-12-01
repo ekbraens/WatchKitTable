@@ -16,7 +16,11 @@
         // Initialize variables here.
         // Configure interface objects here.
         
+        // context passes along certain data from the previous table
+        // put that information into a string
         NSString * namePassed = (NSString *)context;
+        
+        // give it to label and have the string find the image again
         [self.detailLabel setText:namePassed];
         [self.detailImage setImage:[UIImage imageNamed:namePassed]];
         
